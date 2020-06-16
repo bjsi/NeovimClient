@@ -147,7 +147,8 @@ namespace NeovimClient {
 
                 var expr = CreateExpression( name, returnType, param, async, canFail );
                 var neovimFunc = new NeovimFuncInfo( name, dscr, param, returnType, expr, async, canFail );
-                api.Add( name, neovimFunc );
+                if (!api.TryGetValue(name, out _))
+                    api.Add( name, neovimFunc );
             }
         }
 
